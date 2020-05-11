@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Serve.io</string>
+    <string name="title_activity_ngo_home">NgoHomeActivity</string>
+    <string name="title_activity_volunteer_home">VolunteerHomeActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tasks">Tasks</string>
+    <string name="donate">Donate</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+</resources>

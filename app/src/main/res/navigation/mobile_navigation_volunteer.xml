@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_task">
+
+    <fragment
+        android:id="@+id/navigation_task"
+        android:name="com.spoton.serveio.ui.VolunteerUser.fragment.VolunteerTaskFragment"
+        android:label="@string/tasks"
+        tools:layout="@layout/fragment_volunteer_task" />
+
+    <fragment
+        android:id="@+id/navigation_donate"
+        android:name="com.spoton.serveio.ui.VolunteerUser.fragment.VolunteerDonateFragment"
+        android:label="@string/donate"
+        tools:layout="@layout/fragment_volunteer_donate" />
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.spoton.serveio.ui.VolunteerUser.fragment.VolunteerChatFragment"
+        android:label="@string/chat"
+        tools:layout="@layout/fragment_volunteer_chat" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.spoton.serveio.ui.VolunteerUser.fragment.VolunteerProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_volunteer_profile" />
+</navigation>

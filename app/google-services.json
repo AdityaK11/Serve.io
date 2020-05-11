@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "555199784519",
+    "firebase_url": "https://serveio-78db5.firebaseio.com",
+    "project_id": "serveio-78db5",
+    "storage_bucket": "serveio-78db5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555199784519:android:057a8d3fb9c15583fe7362",
+        "android_client_info": {
+          "package_name": "com.spoton.serveio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555199784519-usgl5e2nevteavblvo2oh315f13uo1lp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spoton.serveio",
+            "certificate_hash": "106005650eaf2254da1feef489904658d17569b2"
+          }
+        },
+        {
+          "client_id": "555199784519-54e1hcnonfn5e17jbtstktflhr8lof53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtxQk7gqkHU9ZtEIca2qJlRAMjqShpFiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555199784519-54e1hcnonfn5e17jbtstktflhr8lof53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
