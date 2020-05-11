@@ -22,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
         hello.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SplashScreen.this, VolunteerHomeActivity.class);
+                Intent i = new Intent(SplashScreen.this, NgoHomeActivity.class);
                 startActivity(i);
             }
         });
