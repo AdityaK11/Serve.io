@@ -18,6 +18,7 @@
         app:menu="@menu/bottom_nav_menu_ngo" />
 
     <fragment
+        android:layout_marginBottom="?actionBarSize"
         android:id="@+id/nav_host_fragment_ngo"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"

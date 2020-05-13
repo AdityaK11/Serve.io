@@ -6,10 +6,9 @@
     android:background="@color/background"
     tools:context=".ui.VolunteerUser.fragment.VolunteerTaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tasks_volunteer"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="match_parent"/>
 
 </FrameLayout>

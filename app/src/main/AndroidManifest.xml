@@ -11,6 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.general.activity.RegisterActivity"></activity>
         <activity android:name=".ui.general.activity.LoginActivity" />
+        <activity android:name=".ui.general.activity.NgoLoginActivity" />
+        <activity android:name=".ui.general.activity.NgoRegisterActivity" />
+        <activity android:name=".ui.general.activity.VolunteerLoginActivity" />
+        <activity android:name=".ui.general.activity.VolunteerRegisterActivity" />
         <activity
             android:name=".ui.VolunteerUser.activity.VolunteerHomeActivity"
             android:label="@string/title_activity_volunteer_home" />

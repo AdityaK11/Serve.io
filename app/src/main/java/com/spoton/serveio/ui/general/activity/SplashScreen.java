@@ -18,13 +18,23 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView hello = findViewById(R.id.hello);
-        hello.setOnClickListener(new View.OnClickListener() {
+        TextView login = findViewById(R.id.ngo);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SplashScreen.this, NgoHomeActivity.class);
+                Intent i = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(i);
             }
         });
+
+        TextView reg = findViewById(R.id.volunteer);
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SplashScreen.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

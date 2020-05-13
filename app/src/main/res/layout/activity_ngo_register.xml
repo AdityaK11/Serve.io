@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".ui.general.activity.NgoRegisterActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Ngo Registration"
+        android:textColor="#000000"
+        android:textSize="28sp" />
+
+
+    <EditText
+        android:id="@+id/et_name_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:textColor="#000000"
+        android:hint="NGO name"
+        android:inputType="text"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_location_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Location(City)"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_regno_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Certified Registration Number"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_email_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Email id"
+        android:textColor="#000000"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_phno_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Phone number"
+        android:textColor="#000000"
+        android:inputType="phone"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_description_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Description"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+    <EditText
+        android:id="@+id/et_password_ngo_register"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:hint="Enter a password"
+        android:textColor="#000000"
+        android:inputType="textPassword"
+        android:textColorHint="#9595b7"
+        android:textSize="15sp" />
+
+
+
+    <Button
+        android:id="@+id/btn_ngo_register"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:text="register"
+
+        android:textSize="15sp"
+
+        android:backgroundTint="#000000"
+        android:textColor="#FFFFFF"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"/>
+    <TextView
+        android:id="@+id/tv_already_ngo_register"
+        android:layout_width="wrap_content"
+        android:text="Already registered?"
+
+        android:textColor="#000000"
+        android:layout_marginTop="20dp"
+
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/btn_login_ngo_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"
+        android:text="Login Here"
+        android:textSize="15sp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        />
+
+
+    <ProgressBar
+        android:id="@+id/pb_ngo_register"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+

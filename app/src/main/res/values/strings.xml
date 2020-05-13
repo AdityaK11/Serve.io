@@ -10,4 +10,5 @@
     <string name="chat">Chat</string>
     <string name="profile">Profile</string>
     <string name="home">Home</string>
+    <string name="ngo_payment_info">NGO Payment Info</string>
 </resources>
