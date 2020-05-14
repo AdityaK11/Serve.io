@@ -62,15 +62,18 @@ public class NgoLoginActivity extends AppCompatActivity {
 
         final String phnofromUser = et_phno_ngo_login.getText().toString().trim();
         final String passwordfromUser= et_password_ngo_login.getText().toString().trim();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Ngos");
-        Query checkUser = reference.orderByChild("phno").equalTo(phnofromUser);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Ngos").child("users");
+        Query checkUser = reference.orderByChild("phoneNo").equalTo(phnofromUser);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     et_phno_ngo_login.setError(null);
-
-                    String passwordfromDB= dataSnapshot.child(phnofromUser).child("password").getValue(String.class);
+                    String passwordfromDB="";
+                    for (DataSnapshot supportItem: dataSnapshot.getChildren()) {
+                        passwordfromDB = supportItem.child("password").getValue(String.class);
+                        break;
+                    }
                     if (passwordfromDB.equals(passwordfromUser)) {
                         startActivity(new Intent(NgoLoginActivity.this, NgoHomeActivity.class));
                     } else {
@@ -79,7 +82,7 @@ public class NgoLoginActivity extends AppCompatActivity {
 
                     }
                 } else {
-                    et_phno_ngo_login.setError("No such email");
+                    et_phno_ngo_login.setError("No such phone no");
                     et_phno_ngo_login.requestFocus();
                 }
             }

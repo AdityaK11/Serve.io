@@ -1,10 +1,10 @@
 package com.spoton.serveio.model;
 
 public class Ngo {
-    Double id;
+    String id;
     String name;
     String  location;
-    String proof;
+    String ngoRegNo;
     String email;
     String password;
     String description;
@@ -15,11 +15,11 @@ public class Ngo {
     public Ngo() {
     }
 
-    public Ngo(Double id, String name, String location, String proof, String email, String password, String description, String phoneNo, String upi, boolean approved) {
+    public Ngo(String id, String name, String location, String ngoRegNo, String email, String password, String description, String phoneNo, String upi, boolean approved) {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.proof = proof;
+        this.ngoRegNo = ngoRegNo;
         this.email = email;
         this.password = password;
         this.description = description;
@@ -28,11 +28,11 @@ public class Ngo {
         this.approved = approved;
     }
 
-    public Double getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Double id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,12 +52,12 @@ public class Ngo {
         this.location = location;
     }
 
-    public String getProof() {
-        return proof;
+    public String getNgoRegNo() {
+        return ngoRegNo;
     }
 
-    public void setProof(String proof) {
-        this.proof = proof;
+    public void setNgoRegNo(String ngoRegNo) {
+        this.ngoRegNo = ngoRegNo;
     }
 
     public String getEmail() {

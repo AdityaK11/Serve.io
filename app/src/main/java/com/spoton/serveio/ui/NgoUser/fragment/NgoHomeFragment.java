@@ -49,7 +49,7 @@ public class NgoHomeFragment extends Fragment {
         Toast.makeText(getContext(), id.toString(), Toast.LENGTH_SHORT).show();
         */
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ngos").child("4");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ngos").child("users").child("Ngo2");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

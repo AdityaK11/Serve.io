@@ -11,9 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.spoton.serveio.R;
+import com.spoton.serveio.model.Ngo;
+import com.spoton.serveio.model.Volunteer;
 import com.spoton.serveio.ui.NgoUser.activity.NgoHomeActivity;
 import com.spoton.serveio.ui.VolunteerUser.activity.VolunteerHomeActivity;
 
@@ -45,7 +51,6 @@ public class VolunteerRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                reference2 = FirebaseDatabase.getInstance().getReference("Volunteers");
                 String name = et_name_volunteer_register.getText().toString().trim();
                 String location = et_location_volunteer_register.getText().toString().trim();
                 String email = et_email_volunteer_register.getText().toString().trim();
@@ -86,13 +91,8 @@ public class VolunteerRegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Age not within range! Only 18-60 years volunteers allowed!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                VolunteersHelperClass helperClass = new VolunteersHelperClass(name,location,email,phno,password,age1);
-                reference2.child(phno).setValue(helperClass);
 
-                pb_volunteer_register.setVisibility(View.VISIBLE);
-                Toast.makeText(VolunteerRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(VolunteerRegisterActivity.this, VolunteerHomeActivity.class));
-                finish();
+                addVolunteer(name,location,email,phno,password,String.valueOf(age));
             }
 
         });
@@ -103,5 +103,33 @@ public class VolunteerRegisterActivity extends AppCompatActivity {
                 pb_volunteer_register.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void addVolunteer(final String name, final String location, final String email, final String phno, final String password,final String age) {
+
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Volunteers").child("no");
+        reference2 = FirebaseDatabase.getInstance().getReference("Volunteers").child("users");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Double no = dataSnapshot.getValue(Double.class);
+                no = no+1;
+                String id = "Volunteer"+no.intValue();
+                Volunteer ngo= new Volunteer(id,name,email,password,phno,location,age);
+                reference2.child(id).setValue(ngo);
+                mRef.setValue(no.intValue());
+
+                Toast.makeText(VolunteerRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(VolunteerRegisterActivity.this, NgoHomeActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }

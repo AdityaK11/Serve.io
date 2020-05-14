@@ -2,30 +2,40 @@ package com.spoton.serveio.model;
 
 public class Volunteer {
 
-    Double id;
+    String id;
     String name;
     String email;
     String password;
     String  phoneNo;
     String  location;
+    String age;
 
     public Volunteer() {
     }
 
-    public Volunteer(Double id, String name, String email, String password, String phoneNo, String location) {
+    public Volunteer(String id, String name, String email, String password, String phoneNo, String location, String age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNo = phoneNo;
         this.location = location;
+        this.age = age;
     }
 
-    public Double getId() {
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Double id) {
+    public void setId(String id) {
         this.id = id;
     }
 

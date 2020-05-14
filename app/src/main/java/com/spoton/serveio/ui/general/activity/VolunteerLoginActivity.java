@@ -58,15 +58,18 @@ public class VolunteerLoginActivity extends AppCompatActivity {
 
         final String phnofromUser = et_phno_volunteer_login.getText().toString().trim();
         final String passwordfromUser= et_password_volunteer_login.getText().toString().trim();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Volunteers");
-        Query checkUser = reference.orderByChild("phno").equalTo(phnofromUser);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Volunteers").child("users");
+        Query checkUser = reference.orderByChild("phoneNo").equalTo(phnofromUser);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     et_phno_volunteer_login.setError(null);
-
-                    String passwordfromDB= dataSnapshot.child(phnofromUser).child("password").getValue(String.class);
+                    String passwordfromDB="";
+                    for (DataSnapshot supportItem: dataSnapshot.getChildren()) {
+                        passwordfromDB = supportItem.child("password").getValue(String.class);
+                        break;
+                    }
                     if (passwordfromDB.equals(passwordfromUser)) {
                         startActivity(new Intent(VolunteerLoginActivity.this, VolunteerHomeActivity.class));
                     } else {
@@ -75,7 +78,7 @@ public class VolunteerLoginActivity extends AppCompatActivity {
 
                     }
                 } else {
-                    et_phno_volunteer_login.setError("No such email");
+                    et_phno_volunteer_login.setError("No such phone no");
                     et_phno_volunteer_login.requestFocus();
                 }
             }
