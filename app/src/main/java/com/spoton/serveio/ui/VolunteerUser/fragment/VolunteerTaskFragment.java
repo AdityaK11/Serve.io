@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,6 +66,7 @@ public class VolunteerTaskFragment extends Fragment {
                 TaskAdapter myAdapter = new TaskAdapter(getContext(),array_tasks);
                 recyclerViewTasks.setAdapter(myAdapter);
                 recyclerViewTasks.setLayoutManager(new LinearLayoutManager(getContext()));
+                myAdapter.notifyDataSetChanged();
             }
 
             @Override

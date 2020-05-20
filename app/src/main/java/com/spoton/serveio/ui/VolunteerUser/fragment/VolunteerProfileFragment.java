@@ -29,7 +29,7 @@ public class VolunteerProfileFragment extends Fragment {
     public VolunteerProfileFragment() {
         // Required empty public constructor
     }
-    TextView id1, tv_name, location1, mail1, phoneNo;
+    TextView id1, tv_name, location1, mail1, phoneNo, age;
 
     DatabaseReference data;
 
@@ -43,25 +43,28 @@ public class VolunteerProfileFragment extends Fragment {
         location1 = (TextView)RootView.findViewById(R.id.location);
         mail1 = (TextView)RootView.findViewById(R.id.mail);
         phoneNo = (TextView)RootView.findViewById(R.id.phone);
+        age = RootView.findViewById(R.id.age);
 
 
-        data = FirebaseDatabase.getInstance().getReference("Volunteers");
+        data = FirebaseDatabase.getInstance().getReference("Volunteers").child("users").child("Volunteer1");
 
         try{
             data.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String name = dataSnapshot.child("1").child("name").getValue(String.class);
-                    String email = dataSnapshot.child("1").child("email").getValue(String.class);
-                    String no = dataSnapshot.child("1").child("phoneNo").getValue(String.class);
-                    String loc = dataSnapshot.child("1").child("location").getValue(String.class);
-                    String i = dataSnapshot.child("1").child("id").getValue(String.class);
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String mobile = dataSnapshot.child("phoneNo").getValue(String.class);
+                    String loc = dataSnapshot.child("location").getValue(String.class);
+                    String ID = dataSnapshot.child("id").getValue(String.class);
+                    String Age = dataSnapshot.child("age").getValue(String.class);
 
-                    id1.setText(i);
+                    id1.setText(ID);
                     mail1.setText(email);
                     location1.setText(loc);
                     tv_name.setText(name);
-                    phoneNo.setText(no);
+                    phoneNo.setText(mobile);
+                    age.setText(Age);
 
                 }
 

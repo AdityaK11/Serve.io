@@ -1,6 +1,7 @@
 package com.spoton.serveio.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.spoton.serveio.R;
 import com.spoton.serveio.model.Task;
+import com.spoton.serveio.ui.VolunteerUser.activity.VolunteerTaskActivity;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,27 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.title.setText(array_tasks.get(position).getTitle());
         holder.location.setText(array_tasks.get(position).getTaskLocation());
+
+        final String title= array_tasks.get(position).getTitle();
+        final String description= array_tasks.get(position).getDescription();
+
+        final String ngoLocation= array_tasks.get(position).getNgoLocation();
+        final String taskLocation = array_tasks.get(position).getTaskLocation();
+        final Double id = array_tasks.get(position).getId();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, VolunteerTaskActivity.class);
+                intent.putExtra("title",title) ;
+                intent.putExtra("description", description);
+                intent.putExtra("ngoLocation", ngoLocation);
+                intent.putExtra("taskLocation", taskLocation);
+                intent.putExtra("id", id);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
