@@ -20,11 +20,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.adapters.TaskAdapter;
 import com.spoton.serveio.model.Task;
 
 import java.util.ArrayList;
+
+import io.paperdb.Paper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +42,8 @@ public class NgoTasksFragment extends Fragment {
     FloatingActionButton addFab;
 
     ArrayList<Task> array_tasks = new ArrayList<>();
+
+    String UserKey;
 
 
     @Override
@@ -57,6 +62,9 @@ public class NgoTasksFragment extends Fragment {
             }
         });
 
+        Paper.init(getActivity().getBaseContext());
+        UserKey = Paper.book().read(Common.User_Key);
+
         getTasks();
         return view;
     }
@@ -72,7 +80,10 @@ public class NgoTasksFragment extends Fragment {
                 array_tasks.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Task t = postSnapshot.getValue(Task.class);
-                    array_tasks.add(t);
+                    if(t.getNgoId().equals(UserKey)){
+                        array_tasks.add(t);
+                    }
+
                 }
                 //Toast.makeText(getContext(), taskTitle.toString(), Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getContext(), taskLoc.toString(), Toast.LENGTH_SHORT).show();
@@ -130,7 +141,7 @@ public class NgoTasksFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Double no = dataSnapshot.getValue(Double.class);
                 no = no+1;
-                Task t = new Task(no,title,desc,Double.valueOf(1),"xyz",tLocation);
+                Task t = new Task(no,title,desc,UserKey,"xyz",tLocation);
                 mRef2.child(String.valueOf(no.intValue())).setValue(t);
                 mRef.setValue(no.intValue());
             }

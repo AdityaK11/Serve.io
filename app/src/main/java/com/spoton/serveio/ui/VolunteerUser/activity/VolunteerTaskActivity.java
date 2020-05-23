@@ -2,16 +2,22 @@ package com.spoton.serveio.ui.VolunteerUser.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spoton.serveio.R;
+import com.spoton.serveio.ui.general.activity.ChatActivity;
 
 public class VolunteerTaskActivity extends AppCompatActivity {
 
     TextView tv_volunteer_task_title,tv_volunteer_task_description,tv_volunteer_task_location,tv_volunteer_task_ngo_location;
-    String title,description,task_location,ngo_location;
+    String title,description,task_location,ngo_location,NgoId;
+
+    Button chat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +26,19 @@ public class VolunteerTaskActivity extends AppCompatActivity {
         tv_volunteer_task_description = findViewById(R.id.tv_volunteer_task_description);
         tv_volunteer_task_location = findViewById(R.id.tv_volunteer_task_location);
         tv_volunteer_task_ngo_location = findViewById(R.id.tv_volunteer_task_ngo_location);
+        chat = findViewById(R.id.btn_chat_ngo);
 
         getVolunteerTasksData();
         setVolunteerTasksData();
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VolunteerTaskActivity.this, ChatActivity.class);
+                intent.putExtra("OtherUser",NgoId);
+                startActivity(intent);
+            }
+        });
     }
     private void getVolunteerTasksData()
     {
@@ -33,6 +49,7 @@ public class VolunteerTaskActivity extends AppCompatActivity {
           description = getIntent().getStringExtra("description");
           task_location = getIntent().getStringExtra("taskLocation");
           ngo_location = getIntent().getStringExtra("ngoLocation");
+          NgoId = getIntent().getStringExtra("NgoId");
        }
        else
        {

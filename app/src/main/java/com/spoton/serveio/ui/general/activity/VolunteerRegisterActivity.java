@@ -17,11 +17,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.model.Ngo;
 import com.spoton.serveio.model.Volunteer;
 import com.spoton.serveio.ui.NgoUser.activity.NgoHomeActivity;
 import com.spoton.serveio.ui.VolunteerUser.activity.VolunteerHomeActivity;
+
+import io.paperdb.Paper;
 
 public class VolunteerRegisterActivity extends AppCompatActivity {
     EditText et_name_volunteer_register, et_location_volunteer_register,et_email_volunteer_register,et_phno_volunteer_register,
@@ -119,8 +122,11 @@ public class VolunteerRegisterActivity extends AppCompatActivity {
                 reference2.child(id).setValue(ngo);
                 mRef.setValue(no.intValue());
 
+                Paper.book().write(Common.User_Key,id);
+                Paper.book().write(Common.userType,"Volunteers");
+
                 Toast.makeText(VolunteerRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(VolunteerRegisterActivity.this, NgoHomeActivity.class));
+                startActivity(new Intent(VolunteerRegisterActivity.this, VolunteerHomeActivity.class));
                 finish();
             }
 

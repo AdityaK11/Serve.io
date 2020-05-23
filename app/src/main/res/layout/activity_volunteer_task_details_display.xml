@@ -49,4 +49,17 @@ tools:context=".ui.VolunteerUser.activity.VolunteerTaskDetailsDisplay">
         android:layout_marginTop="32dp"
         android:text="TextView" />
 
+    <Button
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:id="@+id/btn_chat_ngo"
+        android:textColor="@color/white"
+        android:background="@drawable/round_button"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Chat with NGO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
 </LinearLayout>

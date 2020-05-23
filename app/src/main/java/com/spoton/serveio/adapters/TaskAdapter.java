@@ -46,6 +46,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         final String ngoLocation= array_tasks.get(position).getNgoLocation();
         final String taskLocation = array_tasks.get(position).getTaskLocation();
         final Double id = array_tasks.get(position).getId();
+        final String NgoId = array_tasks.get(position).getNgoId();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
                 intent.putExtra("description", description);
                 intent.putExtra("ngoLocation", ngoLocation);
                 intent.putExtra("taskLocation", taskLocation);
+                intent.putExtra("NgoId", NgoId);
                 intent.putExtra("id", id);
                 context.startActivity(intent);
 

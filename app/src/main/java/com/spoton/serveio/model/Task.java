@@ -4,14 +4,14 @@ public class Task {
     Double id;
     String title;
     String description;
-    Double ngoId;
+    String ngoId;
     String ngoLocation;
     String taskLocation;
 
     public Task() {
     }
 
-    public Task(Double id, String title, String description, Double ngoId, String ngoLocation, String taskLocation) {
+    public Task(Double id, String title, String description, String ngoId, String ngoLocation, String taskLocation) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -44,11 +44,11 @@ public class Task {
         this.description = description;
     }
 
-    public Double getNgoId() {
+    public String getNgoId() {
         return ngoId;
     }
 
-    public void setNgoId(Double ngoId) {
+    public void setNgoId(String ngoId) {
         this.ngoId = ngoId;
     }
 

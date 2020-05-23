@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.adapters.MessageAdapter;
 import com.spoton.serveio.model.MessageModel;
@@ -33,6 +35,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
+import io.paperdb.Paper;
+
 public class ChatActivity extends AppCompatActivity {
 
     EditText message;
@@ -42,8 +46,8 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
-    String currentUser = "Ngo1";
-    String currentReceiver = "Volunteer1";
+    String currentUser;
+    String currentReceiver;
 
     ArrayList<MessageModel> array_messages = new ArrayList<>();
 
@@ -54,6 +58,12 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        Paper.init(this);
+        currentUser = Paper.book().read(Common.User_Key);
+
+        Intent intent = getIntent();
+        currentReceiver = intent.getStringExtra("OtherUser");
 
         sendButton = findViewById(R.id.btn_send);
         message = findViewById(R.id.message);

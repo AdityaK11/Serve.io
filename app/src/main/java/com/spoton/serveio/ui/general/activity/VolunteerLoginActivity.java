@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.ui.VolunteerUser.activity.VolunteerHomeActivity;
+
+import io.paperdb.Paper;
 
 public class VolunteerLoginActivity extends AppCompatActivity {
 
@@ -66,12 +70,18 @@ public class VolunteerLoginActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     et_phno_volunteer_login.setError(null);
                     String passwordfromDB="";
+                    String UserKey = "";
                     for (DataSnapshot supportItem: dataSnapshot.getChildren()) {
                         passwordfromDB = supportItem.child("password").getValue(String.class);
+                        UserKey = supportItem.getKey();
                         break;
                     }
                     if (passwordfromDB.equals(passwordfromUser)) {
+                        Log.d("---test---",UserKey);
+                        Paper.book().write(Common.User_Key,UserKey);
+                        Paper.book().write(Common.userType,"Volunteers");
                         startActivity(new Intent(VolunteerLoginActivity.this, VolunteerHomeActivity.class));
+                        finish();
                     } else {
                         et_password_volunteer_login.setError("Wrong password");
                         et_phno_volunteer_login.requestFocus();
@@ -95,6 +105,9 @@ public class VolunteerLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_login);
+
+        Paper.init(this);
+
         btn_volunteer_login = findViewById(R.id.btn_volunteer_login);
         et_phno_volunteer_login = findViewById(R.id.et_phno_volunteer_login);
         et_password_volunteer_login = findViewById(R.id.et_password_volunteer_login);
@@ -113,6 +126,7 @@ public class VolunteerLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(VolunteerLoginActivity.this,VolunteerRegisterActivity.class));
+                finish();
             }
         });
 

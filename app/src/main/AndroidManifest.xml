@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.VolunteerUser.activity.DonateMoneyActivity"></activity>
+        <activity android:name=".ui.general.activity.Firstactivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.VolunteerUser.activity.DonateMoneyActivity" />
         <activity android:name=".ui.VolunteerUser.activity.DonateFoodActivity" />
         <activity android:name=".ui.NgoUser.activity.NgoTaskActivity" />
         <activity android:name=".ui.VolunteerUser.activity.VolunteerTaskActivity" />
@@ -26,13 +32,7 @@
         <activity
             android:name=".ui.NgoUser.activity.NgoHomeActivity"
             android:label="@string/title_activity_ngo_home" />
-        <activity android:name=".ui.general.activity.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.general.activity.SplashScreen"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

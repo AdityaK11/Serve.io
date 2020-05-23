@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
@@ -16,9 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.ui.NgoUser.activity.NgoHomeActivity;
 import com.spoton.serveio.ui.VolunteerUser.activity.VolunteerHomeActivity;
+
+import io.paperdb.Paper;
 
 
 public class NgoLoginActivity extends AppCompatActivity {
@@ -70,12 +74,17 @@ public class NgoLoginActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     et_phno_ngo_login.setError(null);
                     String passwordfromDB="";
+                    String UserKey="";
                     for (DataSnapshot supportItem: dataSnapshot.getChildren()) {
                         passwordfromDB = supportItem.child("password").getValue(String.class);
+                        UserKey = supportItem.getKey();
                         break;
                     }
                     if (passwordfromDB.equals(passwordfromUser)) {
+                        Paper.book().write(Common.User_Key,UserKey);
+                        Paper.book().write(Common.userType,"Ngos");
                         startActivity(new Intent(NgoLoginActivity.this, NgoHomeActivity.class));
+                        finish();
                     } else {
                         et_password_ngo_login.setError("Wrong password");
                         et_phno_ngo_login.requestFocus();
@@ -98,6 +107,9 @@ public class NgoLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_login);
+
+        Paper.init(this);
+
         btn_ngo_login = findViewById(R.id.btn_ngo_login);
         et_phno_ngo_login = findViewById(R.id.et_phno_ngo_login);
         et_password_ngo_login = findViewById(R.id.et_password_ngo_login);
@@ -116,6 +128,7 @@ public class NgoLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(NgoLoginActivity.this,NgoRegisterActivity.class));
+                finish();
             }
         });
 

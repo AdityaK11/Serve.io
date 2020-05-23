@@ -285,6 +285,17 @@
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
+                    <Button
+                        android:id="@+id/btn_logout"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/round_button"
+                        android:text="Logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </Button>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"

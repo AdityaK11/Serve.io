@@ -17,9 +17,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
 import com.spoton.serveio.model.Ngo;
 import com.spoton.serveio.ui.NgoUser.activity.NgoHomeActivity;
+
+import io.paperdb.Paper;
 
 public class NgoRegisterActivity extends AppCompatActivity {
     EditText et_name_ngo_register, et_location_ngo_register,et_regno_ngo_register,et_email_ngo_register,et_phno_ngo_register,
@@ -36,6 +39,8 @@ public class NgoRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_register);
+
+        Paper.init(this);
 
 
         et_name_ngo_register = findViewById(R.id.et_name_ngo_register);
@@ -126,6 +131,9 @@ public class NgoRegisterActivity extends AppCompatActivity {
                 Ngo ngo= new Ngo(id,name,location,regno,email,password,description,phno,"",false);
                 reference.child(id).setValue(ngo);
                 mRef.setValue(no.intValue());
+
+                Paper.book().write(Common.User_Key,id);
+                Paper.book().write(Common.userType,"Ngos");
 
                 pb_ngo_register.setVisibility(View.VISIBLE);
                 Toast.makeText(NgoRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
