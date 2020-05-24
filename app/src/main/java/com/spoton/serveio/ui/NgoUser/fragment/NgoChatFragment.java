@@ -65,8 +65,6 @@ public class NgoChatFragment extends Fragment {
         received = new ArrayList<>();
         allChat = new ArrayList<>();
 
-        Button logout = v.findViewById(R.id.btn_logout_ngo);
-
         final String UserKey = Paper.book().read(Common.User_Key);
 
         rootNode = FirebaseDatabase.getInstance();
@@ -118,16 +116,6 @@ public class NgoChatFragment extends Fragment {
                 String selectedFromList = (String) chatListView.getItemAtPosition(position);
                 intent.putExtra("OtherUser",selectedFromList);
                 startActivity(intent);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Paper.book().destroy();
-                Intent i = new Intent(getActivity().getBaseContext(), SplashScreen.class);
-                startActivity(i);
-                getActivity().finish();
             }
         });
 

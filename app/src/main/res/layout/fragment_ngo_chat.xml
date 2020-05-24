@@ -17,16 +17,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_margin="16dp"
-        android:id="@+id/btn_logout_ngo"
-        android:textColor="@color/white"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:text="Logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </Button>
-
 </LinearLayout>

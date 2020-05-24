@@ -1,5 +1,6 @@
 package com.spoton.serveio.ui.NgoUser.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.spoton.serveio.Common;
 import com.spoton.serveio.R;
+import com.spoton.serveio.model.Ngo;
+import com.spoton.serveio.ui.general.activity.SplashScreen;
+
+import io.paperdb.Paper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,16 +49,26 @@ public class NgoHomeFragment extends Fragment {
         addUPI = view.findViewById(R.id.btn_add_upi);
         getUPI = view.findViewById(R.id.et_upi);
 
-        //check after login/signup works
-        /*
-        Double id = Double.valueOf(getId());
-        Toast.makeText(getContext(), id.toString(), Toast.LENGTH_SHORT).show();
-        */
+        final TextView name = view.findViewById(R.id.tv_ngo_name);
+        final TextView description = view.findViewById(R.id.tv_ngo_description);
+        final TextView location = view.findViewById(R.id.tv_ngo_location);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ngos").child("users").child("Ngo2");
+        Paper.init(getActivity().getBaseContext());
+
+        String userKey = Paper.book().read(Common.User_Key);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Ngos").child("users").child(userKey);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Ngo n = dataSnapshot.getValue(Ngo.class);
+
+                name.setText(n.getName());
+                description.setText(n.getDescription());
+                location.setText("("+n.getLocation()+")");
+
+
                 String value = dataSnapshot.child("upi").getValue().toString();
                 if(dataSnapshot.exists() && !value.equals("")) {
                     displayUPI.setText("UPI Id: "+value);
@@ -83,6 +99,17 @@ public class NgoHomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        Button logout = view.findViewById(R.id.btn_logout_ngo);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Paper.book().destroy();
+                Intent i = new Intent(getActivity().getBaseContext(), SplashScreen.class);
+                startActivity(i);
+                getActivity().finish();
             }
         });
 
