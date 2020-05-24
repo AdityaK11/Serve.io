@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -121,6 +122,7 @@ public class NgoRegisterActivity extends AppCompatActivity {
 
     private void addNgo(final String name, final String location, final String regno, final String email, final String phno, final String password, final String description) {
 
+        Log.d("hihi", "hans dele");
         final DatabaseReference mRef = rootNode.getReference("Ngos").child("no");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -137,13 +139,15 @@ public class NgoRegisterActivity extends AppCompatActivity {
 
                 pb_ngo_register.setVisibility(View.VISIBLE);
                 Toast.makeText(NgoRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(NgoRegisterActivity.this, NgoHomeActivity.class));
+                Intent intent = new Intent(NgoRegisterActivity.this, AuthActivity.class);
+                intent.putExtra("type",  "ngo");
+                startActivity(intent);
                 finish();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.d("hihi", "roo dele");
             }
         });
 

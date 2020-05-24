@@ -126,7 +126,9 @@ public class VolunteerRegisterActivity extends AppCompatActivity {
                 Paper.book().write(Common.userType,"Volunteers");
 
                 Toast.makeText(VolunteerRegisterActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(VolunteerRegisterActivity.this, VolunteerHomeActivity.class));
+                Intent intent = new Intent(VolunteerRegisterActivity.this, AuthActivity.class);
+                intent.putExtra("type",  "volunteer");
+                startActivity(intent);
                 finish();
             }
 
